@@ -26,7 +26,6 @@ public class Gasket extends JFrame {
                     update();
                     repaint();
                     Thread.sleep(5);
-                    break;
                 }
                 return null;
             }
@@ -76,7 +75,7 @@ public class Gasket extends JFrame {
         g.drawLine(x1, y1, x3, y3);
         g.drawLine(x2, y2, x3, y3);
 
-        Thread.sleep(50);
+        Thread.sleep(5);
 
         triangle(x+s/2, (int)(y-s/2.3), (int)(s/2), n-1, g);
         triangle(x, (int)(y-s/2.3), (int)(s/2), n-1, g);
