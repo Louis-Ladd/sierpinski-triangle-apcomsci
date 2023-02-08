@@ -25,7 +25,7 @@ public class Gasket extends JFrame {
                 {
                     update();
                     repaint();
-                    Thread.sleep(5);
+                    break;
                 }
                 return null;
             }
@@ -39,10 +39,11 @@ public class Gasket extends JFrame {
     {
         super.paint(graphics);
         getGraphics().setColor(Color.BLACK);
+        graphics.fillOval(400, 300, 20, 20);
         //graphics.drawString("second: " + seconds, 200, 200);
         try
         {
-            triangle(400, 400, 200, 10, graphics);
+            sTriangle(200, 300, 200, 3, graphics);
         }
         catch (Exception e)
         {
@@ -56,16 +57,19 @@ public class Gasket extends JFrame {
         seconds++;
     }
 
-    public static void triangle(int x, int y, int s, int n, Graphics g)  throws Exception
+    public static void sTriangle(int x, int y, int s, int n, Graphics g)  throws Exception
     {
         if (n == 0)
         {
             return;
         }
 
+        int xOffset = (x) + 0;
+        int yOffset = (y) + 0;
+
         // Coordinates
-        int x1 = x;
-        int y1 = y;
+        int x1 = xOffset;
+        int y1 = yOffset;
         int x2 = (int)(x1+s);
         int y2 = y1;
         int x3 = (int)((x1+x2)/2.0);
@@ -75,10 +79,11 @@ public class Gasket extends JFrame {
         g.drawLine(x1, y1, x3, y3);
         g.drawLine(x2, y2, x3, y3);
 
-        Thread.sleep(5);
-
-        triangle(x+s/2, (int)(y-s/2.3), (int)(s/2), n-1, g);
-        triangle(x, (int)(y-s/2.3), (int)(s/2), n-1, g);
+        sTriangle(x1, y1, (int)(s/2), n-1, g);
+        sTriangle((int)((x1+x2)/2), (int)((y1 + y2)/2), (int)(x/2), n-1, g);
+        sTriangle((int)((x1+x3)/2), (int)((y1 + y3)/2), (int)(x/2), n-1, g);
+        //sTriangle(x+s/2, (int)(y-s/2.3), (int)(s/2), n-1, g);
+        //sTriangle(x, (int)(y-s/2.3), (int)(s/2), n-1, g);
 
     }
  
