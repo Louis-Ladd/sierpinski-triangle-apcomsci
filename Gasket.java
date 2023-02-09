@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.Font;
 import java.awt.geom.Line2D;
 import javax.swing.JFrame;
 import javax.swing.SwingWorker;
@@ -19,9 +20,11 @@ public class Gasket extends JFrame {
 
     public Gasket() {
         randomGenerator = new Random();
-        setSize(1000, 1000);
+
+        setSize(1000, 1200);
+        setTitle("Triangle");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         seconds = 0;
         topXOffset = 0;
         stop = false;
@@ -32,12 +35,11 @@ public class Gasket extends JFrame {
             @Override
             protected Object doInBackground() throws Exception 
             {
-                while(!stop) 
+                while(!stop)
                 {
                     update();
                     repaint();
-                    Thread.sleep(250);
-                    break;
+                    Thread.sleep(2500);
                 }
                 return null;
             }
@@ -49,15 +51,21 @@ public class Gasket extends JFrame {
     @Override
     public void paint(Graphics graphics) //Draw here
     {
-        //super.paint(graphics);
-        //getContentPane().setBackground(new Color(70,80,70));
-        getGraphics().setColor(Color.BLACK);
+        super.paint(graphics);
+        getContentPane().setBackground(new Color(70,80,70));
+        getGraphics().setColor(Color.WHITE);
         Graphics2D g2 = (Graphics2D) graphics;
+
+        int currentDepth = randomGenerator.nextInt(1,11);
+
+        graphics.setFont(new Font("Comic Sans MS", Font.PLAIN, 100)); 
+        graphics.drawString("Depth: " + currentDepth, 300, 115);
+        graphics.setFont(new Font("Comic Sans MS", Font.PLAIN, 75)); 
+        graphics.drawString("Sierpinski Triangle By Louis", 20, 1100);
 
         try
         {
-            triangle(10, 550, 50, graphics);
-            sTriangle(10, 980, 980, 8, g2);
+            sTriangle(10, 980, 980, currentDepth, g2);
         }
         catch (Exception e)
         {
@@ -117,11 +125,5 @@ public class Gasket extends JFrame {
         sTriangle((x1+x2)/2.0, (y1+y2)/2.0, s/2.0, n-1, g);
         sTriangle((x1+x3)/2.0, (y1+y3)/2.0, s/2.0, n-1, g);
 
-    }
- 
-    public static void main(String[] args) 
-    {
-        Gasket w = new Gasket();
-        w.setVisible(true);
     }
 }
