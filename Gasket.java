@@ -7,10 +7,9 @@ import java.awt.Font;
 import java.awt.geom.Line2D;
 import javax.swing.JFrame;
 import javax.swing.SwingWorker;
-
-
  
-public class Gasket extends JFrame {
+public class Gasket extends JFrame
+{
     private SwingWorker gameLooper;
     private boolean stop;
     private static Random randomGenerator;
@@ -18,7 +17,8 @@ public class Gasket extends JFrame {
     private int seconds;
     private static int topXOffset;
 
-    public Gasket() {
+    public Gasket() 
+    {
         randomGenerator = new Random();
 
         setSize(1000, 1200);
